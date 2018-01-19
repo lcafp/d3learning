@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+        d3
+            .select("body") //Give the select () method a CSS selector as input. Also see selectAll()
+            .append("p") //create whatever new element you specify and appends it to the end (just inside)
+            .text("New Paragraph!"); //takes a string and inserts it between the "open and close" tag ... ; end of the line, chain over
+
+            //Chainless syntax
+
+        var body = d3.select("body");
+        var p = body.append("p");
+        p.text("New paragraph!");
+
+        var dataset = [5,10,15,20,25];
+        d3.select("body"). selectAll("p")
+        //d3.select("body"), finds the body in the DOM and hands off a reference to the next step in the chain
+        //Selects all paragraphs in the DOM. *Soon exist
+            .data(dataset)
+            //Counts and parses out data. There are five values [5,10,15,20,25] in array
+            .enter()
+            //To create new, data-bound elemets, you must use enter(). This method looks at the current DOM selection, and then at the data being handed to it.
+            .append("p")
+            //Takes the empty placeholder selection created by enter() and appends (add) a p element into the DOM.
+            .text("New paragraph!");
+            //Take the reference to the newly created p and inserts a text value
+        </script>
+    </body>
+</html>

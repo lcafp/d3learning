@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+         var dataset = [5,10,15,20,25];
+            d3.select("body").selectAll("p")
+                .data(dataset)
+                .enter()
+                .append("p")
+
+
+                //Inserting text
+                .text(function(d) {
+                    return "I can count up to " + d;
+                    //return is one of the function (action) that tells the script shown on the website should look like
+                })
+
+
+                //Put color for specific texts
+                .style("color", function (d){
+                    if (d > 15) { //Threshold of 15
+                        return "red";
+                    } else {
+                        return "blue";
+                    } 
+                });
+        </script>
+    </body>
+</html>

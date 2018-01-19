@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>D3 Page Template</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+
+        <!-- First step to setup all
+
+
+        <div class="bar"></div>
+
+
+        It could be in a style of
+
+        <div style="display: inline-block;
+            width: 20px;
+            height: 75px;
+            background-color: teal;"></div>
+
+        -->
+
+
+
+        <!-- separated item -->
+
+
+        <script type="text/javascript">
+            var dataset = []; 
+            //Make it random
+            for (var i = 0; i <25; i++){ 
+            //Loop 25 times
+                var newNumber = Math.floor(Math.random() * 30);
+                //Math.floor round down of no.
+                //math.random, New random number (0-30)
+                dataset.push(newNumber);
+                //push = add new number to array
+                }
+
+            d3.select("body")
+                .selectAll("div")
+                .data(dataset) //The answer is here
+                .enter()
+                .append("div")
+                .attr("class", "bar")
+                .style("height", function(d){
+                    var barHeight = d * 5; //Scale up by factor of 5
+                    return barHeight + "px";
+                });
+        </script>
+
+    </body>
+</html>

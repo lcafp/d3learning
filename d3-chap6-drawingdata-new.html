@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>D3 Page Template</title>
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+         //new data
+         var dataset = [5,10,13,19,21,25,10,13,19,21,25,10,13,19,21,25,10,13,19,21];
+
+         //defining width and height
+         var w = 500;
+         var h = 100;
+         var barPadding = 1; //For adjusting the width of the bars on line 35
+
+         //Defining (creating) new svg element
+         var svg = d3.select("body")
+                     .append("svg")
+                     .attr("width", w)
+                     .attr("height", h);
+
+         svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x" , function(d, i){
+                    return i * (w / dataset.length);
+                }) 
+                //makes it work, from ("x", 0), to 0 >function(d, i){return i *21;}), to now
+                //Change the dataset amount on the top to see different pattern of the chart in the same height and same bars
+            .attr("y", function(d){
+                return h - d * 4; 
+                //height minus data value
+            })
+            .attr("width", w / dataset.length - barPadding)
+            //the width of each bar, adjustable
+            .attr("height", function(d){
+                return d * 4; // Times four
+            })
+            .attr ("fill", function(d){
+                return "rgb(0,0,"+Math.round(d*10)+")"
+            });
+            //play with colors and gradation of rgb with variants of d - the data set function(d)
+            //fill "blue" > function (d){return}
+            //rgb color the blue section (the third one) change to variable in to "+Math.round(d*10)+" ...(+) Math.round() (+)
+
+            //Label the chart below
+
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+            //Give command / visualise text stated above
+                .text(function (d){
+                    return d;
+                })
+            //Where to show
+                .attr("x", function(d, i){
+                    return i * (w/ dataset.length) + 5;
+                })
+                .attr("y", function (d){
+                    return h - (d * 4) + 15;
+                })
+            //How the text looks like
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("fill", "white")
+            //align center
+                .attr("text-anchor", "middle")
+
+
+        </script>
+    </body>
+</html>

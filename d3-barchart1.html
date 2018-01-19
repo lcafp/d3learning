@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>Bar charts 1</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+            //give attribution (defining) of the svg and the dataset
+
+            //give data for the bar chart - dataset
+           var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
+
+           //define the framework
+           var w = 500;
+           var h = 100;
+           var barPadding = 1;
+
+           //create svg element
+           var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        //defined above, the frame's width
+                        .attr("height", h);
+                        //same description above but the height
+
+                        //finish one block
+
+
+
+
+            //executing the svg in the body
+
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+
+                //if attributes x y below is set from 0, 0. The chart will be visualised from upper left to lower right
+
+                // --- filling colors ---
+
+                .attr("fill", function(d){
+                    return "rgb(0,0, "+(d * 10)+")";
+                })
+                //plusing structure of rgb color code is 
+                //rgb ( a , b "+(variable)+" )
+                //can be name like "blue", "teal", "black", "red", or rgb code as above
+
+
+                // --- dimension of the bars with various height in accordance of the dataset above ---
+
+                .attr("x", function(d, i){
+                     //make all functions in variables, then the chart will be visualising depends on the entries you have
+                     return i * (w / dataset.length);
+                    })
+
+                    // Alternated
+
+                    //return i * 21;
+                    // Bar width of 20 plus 1 for padding
+                    //changed part for showing variable from standard 0
+                .attr("y", function (d){
+                    return h - (d * 4); //start of the height will be deducted by the maximum height of the chart which the h of each will be all in "minus", height - data value
+                })
+                .attr("width", w / dataset.length - barPadding)
+                    // To make the width of the bar proportionally and adjustably narrower or wider in accordance to the data fit in
+
+                    //before it was fixed "20"
+                .attr("height", function(d) {
+                    return d * 4;
+                    //return means visualising
+                });
+                    //give height variables based on the dataset set above, the string [ ... ]
+
+                    //Time 4 is to make the bars looking longer
+
+                    //before it was fixed "100"
+
+
+            //executing text on svg bar
+
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+
+                //executing what text should be, "return d", above create a new entry for text
+                .text(function(d) {
+                    return d;
+                })
+
+                //the text located in x axis
+                .attr("x", function(d, i){
+                    return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+                })
+                //i stands for item
+                .attr("y", function(d){
+                    return h - (d * 4) + 14;
+                    //+15 moving downward
+                })
+
+                //adding the text css style
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("fill", "white")
+                .attr("text-anchor", "middle")
+
+
+
+        </script>
+    </body>
+</html>

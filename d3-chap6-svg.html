@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>D3 Page Template</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var w = 500;
+            var h = 50;
+            //give definition for the svg
+            var svg = d3.select("body").append("svg")
+                        .attr("width", w)
+                        .attr("height", h); 
+                        //attr = attribute
+            var dataset = [5,10,15,20,25];
+
+            var circles = svg.selectAll("circle") 
+            //return empty reference to all circle
+                .data(dataset) 
+                //binds data (array) to the elements we are about to create
+                .enter() 
+                //return a placeholder reference to the new element
+                .append("circle");
+                //finally adds a circle to the DOM, element
+
+            circles.attr("cx", function(d, i){
+                    return (i * 50) + 25;
+                    // First i == 0, Second i == 1 
+                    })
+                    // cx is the x-position of the center of the circle
+                    //data alreoady been bound to the circle elements, 5,10,15,20,25
+                    //i is a numeric index value of the current elemt
+                    .attr("cy", h/2)
+                    //cy is the y-position value of the center of each circle
+                    // Setting cy to h/2
+                    // h/2 has the effect of aligning all circles in the vertical center of the image
+                    .attr("r", function(d){
+                        return d;
+                    })
+                    // radius of each circle is simply set to d, the corresponding data value
+
+                    
+                    .attr("fill", "yellow")
+                    .attr("stroke", "orange")
+                    .attr("stroke-width", function(d){
+                        return d/2;
+                    });
+        </script>
+    </body>
+</html>

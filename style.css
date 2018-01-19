@@ -1,0 +1,8 @@
+.bar {
+	display:inline-block;
+	width: 20px;
+	height: 75px;
+	background-color: teal;
+	/* If it is a div, put div.bar, or else as above */
+	margin-right: 2px;
+} 
