@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- The must-put item on HTML file -->
+        <title>Scatter plot</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="d3.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+        //database, array (array of arrays)
+            var dataset = [
+                [5 , 20], 
+                [480 , 90], 
+                [250 , 50], 
+                [100 , 30], 
+                [300 , 95], 
+                [410 , 12], 
+                [475 , 44], 
+                [25 , 67], 
+                [85 , 21], 
+                [220 , 98]
+                ];
+
+            //canvas
+            var w = 500;
+            var h = 200;
+
+            //create svg elements
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+
+            svg.selectAll("circle") //which will be assigned
+                .data(dataset)
+                .enter()
+                .append("circle") //add something
+                .attr("cx", function(d){
+                    return d[0];
+                })
+                .attr("cy", function(d){
+                    return d[1];
+                })
+                .attr("r", 5);
+
+        </script>
+    </body>
+</html>
